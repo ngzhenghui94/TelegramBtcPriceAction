@@ -1,16 +1,16 @@
 import TelegramBot from "node-telegram-bot-api";
 import moment from "moment-timezone";
 moment.tz.setDefault("Asia/Singapore");
-import schedule from "node-schedule";
-import dotenv from "dotenv";
-dotenv.config();
 
-const bot = new TelegramBot(process.env.TOKEN, { polling: true });
-const channelID = process.env.CHANNELID;
+import { msgSender } from "./src/msgSender.js";
+import { telegramToken } from "./src/constants.js";
 
+const bot = new TelegramBot(telegramToken, { polling: true });
 
-/* A cron job that runs every 1 minute. */
-const job = schedule.scheduleJob("* 1 *  * * *", async () => {
-	bot.sendMessage(channelID, "Init Test");
+/* Fn to send msg to channnell */
+msgSender(bot);
+
+bot.on("poll", (err) => {
+	console.log(err);
+	sendMsgToAdmin(bot, err);
 });
-
