@@ -15,7 +15,7 @@ export const msgSender = async (bot) => {
 		axios.get(apiUrl).then(async (response) => {
 			let price = response.data[0].current_price;
             let percentChange = response.data[0].price_change_percentage_24h;
-			bot.sendMessage(channelID, `⬢ ${process.env.CRYPTOTICKER}/USD Price: ${price}\n 24H % Change: ${percentChange}`);
+			bot.sendMessage(channelID, `⬢ ${process.env.CRYPTOTICKER}/USD Price: ${price}\n ⬢ 24H%: ${percentChange}%`);
 		});
 	});
 };
