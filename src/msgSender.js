@@ -14,7 +14,8 @@ export const msgSender = async (bot) => {
 	schedule.scheduleJob("*/60 * *  * * *", async () => {
 		axios.get(apiUrl).then(async (response) => {
 			let price = response.data[0].current_price;
-			bot.sendMessage(channelID, `⬢ ${process.env.CRYPTOTICKER}/USD Price: ${price}`);
+            let percentChange = response.data[0].percent_change_24h;
+			bot.sendMessage(channelID, `⬢ ${process.env.CRYPTOTICKER}/USD Price: ${price}\n 24H % Change: ${percentChange}`);
 		});
 	});
 };
