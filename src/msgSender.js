@@ -20,7 +20,7 @@ export const msgSender = async (bot) => {
       let low24h = response.data[0].low_24h;
       bot.sendMessage(
         channelID,
-        `⬢ ${process.env.CRYPTOTICKER}/USD Price: $${price}\n⬢ 24H%: ${percentChange}%\n⬢ 24H Low/24H High: $${low24h} / $${high24h}`
+        `⬢ ${process.env.CRYPTOTICKER}/USD Price: $${price}\n⬢ 24H Low/24H High: $${low24h} / $${high24h}\n⬢ 24H Price Change: ${percentChange}%`
       );
     });
   });
