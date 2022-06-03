@@ -15,7 +15,7 @@ export const msgSender = async (bot) => {
     axios.get(apiUrl).then(async (response) => {
       let price = response.data[0].current_price;
       let percentChange = response.data[0].price_change_percentage_24h;
-      let marketcap = response.data[0].market_cap;
+      let marketcap = response.data[0].market_cap == 0 ? "N/A" : response.data[0].market_cap;
       let high24h = response.data[0].high_24h;
       let low24h = response.data[0].low_24h;
       bot.sendMessage(
